@@ -238,17 +238,7 @@ Limitations: 2024–2025 data was largely incomplete due to WDI reporting lag; s
 ---
 
 ## 13. Deliverables
-
-Final Report
-
-/reports/
-
-
-/visuals/
-
-PNG exports of each dashboard view
-/visuals/
-
+ 
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
 | Final Report | PDF covering objective, methodology, findings, recommendations | [`/path/to/file`] |
@@ -259,12 +249,16 @@ PNG exports of each dashboard view
 
 ## 14. Author
 
-**[Your Name]**
-[Your role or title - current or target]
+**Vivian Okwara**
+Data Analyst | Lagos, Nigeria 
 
-- 🔗 [LinkedIn URL]
-- 💼 [Portfolio or GitHub profile URL]
-- 📧 [Email - optional]
+- 🔗 LinkedIn: https://linkedin.com/in/okwara-vivian
+- 💼 https://Vivian-Portfolio. github.io
+- 📧 Email: okwaravivian26@gmail.com
+---
+
+*Last updated: August 2026*
+
 
 ---
 
