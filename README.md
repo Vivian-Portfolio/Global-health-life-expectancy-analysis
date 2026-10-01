@@ -114,11 +114,16 @@ Dashboard / Visualization (Power BI)
 ```
 
 1. **Source:** World Bank World Development Indicators (WDI) bulk CSV download, covering 200+ countries and all WDI indicators, 1960–present.
-2.**Ingestion:** Downloaded as WDI_CSV.zip, extracted, and loaded WDICSV.csv into Power BI via Power Query.
-3.**Cleaning:** Filtered to 6 health indicators, removed regional/income-group aggregates, fixed a mis-typed Year column (originally read as a date serial number), unpivoted year columns into a long format.
-4.**Transformation:** Converted from wide format (years as columns) to long format (Country, Indicator, Year, Value) to support time-series and filterable visuals.
-5.**Analysis:** Descriptive averages (KPI cards), geospatial comparison (map), trend analysis (line chart), and ranking (bar/pie charts), all made interactive via slicers.
-6.**Output:** Interactive Power BI dashboard, PDF report, and dashboard screenshots.
+
+2. **Ingestion:** Downloaded as WDI_CSV.zip, extracted, and loaded WDICSV.csv into Power BI via Power Query.
+
+3. **Cleaning:** Filtered to 6 health indicators, removed regional/income-group aggregates, fixed a mis-typed Year column (originally read as a date serial number), unpivoted year columns into a long format.
+
+4. **Transformation:** Converted from wide format (years as columns) to long format (Country, Indicator, Year, Value) to support time-series and filterable visuals.
+
+5. **Analysis:** Descriptive averages (KPI cards), geospatial comparison (map), trend analysis (line chart), and ranking (bar/pie charts), all made interactive via slicers.
+
+6. **Output:** Interactive Power BI dashboard, PDF report, and dashboard screenshots.
 
 ---
 
