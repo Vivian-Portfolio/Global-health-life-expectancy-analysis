@@ -144,7 +144,8 @@ Dashboard / Visualization (Power BI)
 > **Key join / relationship:**Single flat table; no joins required — Country Name/Code, Indicator Name/Code, Year, and Value all live in one row per observation.
 
 ---
-## 8. Analysis & Metrics
+## 7. Analysis & Metrics
+
 ### Analytical Approach
 This was primarily an exploratory and descriptive analysis: filtering a large global indicator dataset down to a health-focused subset, then summarizing, comparing, and visualizing patterns across countries and time — rather than testing a specific statistical hypothesis.
 
@@ -165,7 +166,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 
 ---
 
-## 9. Key Insights
+## 8. Key Insights
 
 **Insight 1:** Development and longevity are closely linked. Smaller, high-income nations — Switzerland, Monaco, Luxembourg, Norway, Denmark — consistently top the 2023 life expectancy rankings, pointing to a strong association between economic development, healthcare investment, and health outcomes.
 
@@ -176,7 +177,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 ---
 
 
-## 10. Recommendations
+## 9. Recommendations
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
@@ -186,7 +187,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 
 ---
 
-## 11. Assumptions & Limitations
+## 10. Assumptions & Limitations
 ### Assumptions
 
 - Regional and income-group aggregates (e.g., "World," "Africa Eastern and Southern") were excluded to focus on individual country-level comparison.
@@ -201,7 +202,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 
 ---
 
-## 12. Future Enhancements
+## 11. Future Enhancements
 
 - [ ] Add GDP per capita and education indicators to statistically test the development–health relationship
 - [ ] Build a Bottom 10 countries view alongside the existing Top 10
@@ -210,7 +211,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 
 ---
 
-## 13. Deliverables
+## 12. Deliverables
  
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
@@ -221,7 +222,7 @@ This was primarily an exploratory and descriptive analysis: filtering a large gl
 
 ---
 
-## 14. Author
+## 13. Author
 
 **Vivian Okwara**
 Data Analyst | Lagos, Nigeria 
@@ -234,7 +235,3 @@ Data Analyst | Lagos, Nigeria
 *Last updated: August 2026*
 
 
----
-
-*Last updated: [Month YYYY]*
-*If this template helped you, consider starring the repository.*
