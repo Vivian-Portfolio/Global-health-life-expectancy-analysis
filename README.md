@@ -11,7 +11,7 @@ Check what applies. This helps reviewers and collaborators understand the nature
 - [ ] Data Pipeline / ETL
 - [ ] Predictive Modelling / Machine Learning
 - [x] Data Cleaning / Wrangling
-- [ ] End-to-End (multiple of the above)
+- [x] End-to-End (multiple of the above)
 - [ ] Other: ___________
 
 ---
