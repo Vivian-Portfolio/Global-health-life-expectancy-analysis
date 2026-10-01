@@ -35,23 +35,23 @@ Check what applies. This helps reviewers and collaborators understand the nature
 ---
 
 ## 1. Project Overview
+
+**Context:** Final capstone project for the AnalystLab Africa Data Analytics Internship, applying the complete end-to-end analytics workflow — from raw data acquisition to a finished, interactive dashboard — to a real-world global development dataset.
+
+**Problem Statement:** How do life expectancy and key health outcomes vary across countries and over time, and what patterns or factors are associated with better health performance?
+
+**Approach:** The World Bank's World Development Indicators (WDI) bulk dataset was downloaded, filtered down to a set of health-focused indicators, and cleaned/transformed in Power Query (Power BI). The cleaned data was then modeled and visualized in an interactive Power BI dashboard with KPI cards, a country map, a historical trend line, and country-ranking charts.
+
+**Outcome:**  A fully interactive Power BI dashboard and accompanying report identifying which countries lead in life expectancy, how global health outcomes have evolved since 1960, and what that suggests for health policy and investment priorities.
  
- 1. Project Overview
-**Context:** Final capstone project for the AnalystLab Africa Data Analytics Internship, applying the complete analytics workflow to a real-world global dataset.
-
-**Problem Statement:** How do life expectancy and key health outcomes vary across countries and over time, and what factors are associated with better health performance?
-
-**Approach:** Cleaned and transformed World Bank WDI health indicators in Power Query, then built an interactive Power BI dashboard with KPIs, a map, trend analysis, and country rankings.
-
-**Outcome:** A fully interactive dashboard and report identifying which countries lead in life expectancy and how global health outcomes have evolved since 1960.
-
 ---
 
 ## 2. Objectives
 
-- **Primary Objective:** Analyze global life expectancy and health indicator trends using WDI data.
-- **Secondary Objective 1:** Identify the countries with the highest and lowest life expectancy as of 2023.
-- **Secondary Objective 2:** Build an interactive dashboard allowing users to explore different health indicators and years.
+- **Primary Objective:** Analyze global life expectancy and related health indicator trends using the World Bank's WDI dataset.
+- **Secondary Objective 1:** Identify the countries with the highest life expectancy as of the most recent complete year (2023).
+- **Secondary Objective 2:** Build an interactive dashboard that allows a user to explore different health indicators and time periods.
+- **Secondary Objective 3:**  Surface actionable insights and recommendations for health investment priorities.
 
 > 💡 *Every analysis decision in this project traces back to one of these objectives.*
 
@@ -63,8 +63,8 @@ Check what applies. This helps reviewers and collaborators understand the nature
 
 | Dimension | Details |
 |-----------|---------|
-| **In Scope** | Health indicators (life expectancy, mortality, expenditure, immunization) across all available countries, 1960–2023 |
-| **Out of Scope** | Non-health WDI indicators (economy, education, trade) |
+| **In Scope** | Health-related indicators (life expectancy, under-5 mortality, maternal mortality, hospital beds, health expenditure, immunization) across all individual countries |
+| **Out of Scope** | Non-health WDI indicators (economy, education, trade, environment, etc.); regional and income-group aggregates (e.g., World, Africa Eastern and Southern) |
 | **Time Period** |1960–2023 |
 | **Granularity** | Country-year level|
 
@@ -75,165 +75,134 @@ Check what applies. This helps reviewers and collaborators understand the nature
 | Data Storage | CSV (World Bank WDI bulk download |
 | Data Processing | Power Query (Power BI |
 | Analysis | Power BI (DAX, aggregations |
-| Visualization | Power BI Desktop |
+| Visualization | Power BI Desktop (Filled Map, Line, Bar, Donut/Pie, Card visuals) |
 | Version Control | Git / GitHub |
 | Documentation | [e.g., Markdown |
-
 ---
 
 ## 4. Repository Structure
 
 ```
-[project-root]/
-│
+project-root/
 ├── data/
-│   ├── raw/                  # Original, unmodified source data - never edited
-│   ├── processed/            # Cleaned and transformed data
-│   └── external/             # Reference data, lookup tables, third-party files
-│
-├── notebooks/                # Jupyter, R Markdown, or Colab notebooks
-│
-├── scripts/                  # Reusable .py, .R, or .sh processing files
-│
-├── queries/                  # SQL files (retain this folder for SQL-heavy projects)
-│   ├── exploratory/          # Ad-hoc or investigative queries
-│   ├── transformations/      # Cleaning and reshaping logic
-│   └── final/                # Production-ready or presentation queries
-│
-├── reports/                  # Final outputs: PDFs, slide decks, Word docs
-│
-├── visuals/                  # Exported charts, dashboard screenshots, ERD diagrams
-│
-├── docs/                     # Data dictionaries, schema notes, reference material
-│
-├── project_metadata.yml      # Machine-readable metadata (optional)
-└── README.md                 # You are here
+│   ├── raw/                 # Original WDICSV.csv (unmodified source data)
+│   └── processed/           # Cleaned, unpivoted health-indicator dataset
+├── reports/
+│   └── WDI_Health_Capstone_Report.pdf   # Final report (objective, methodology, findings, recommendations)
+├── visuals/
+│   ├── WDI_Health_Dashboard.pbix        # Power BI dashboard file
+│   └── screenshots/                     # PNG exports of each dashboard view
+├── docs/
+│   └── indicator-reference.md           # Indicator codes/definitions used
+└── README.md                            # You are here
 ```
-
-> ⚠️ *Delete folders you didn't use. An empty folder is worse than no folder.*
-> SQL-heavy projects: keep `queries/`. Analysis-only projects: keep `notebooks/`. Both? Keep both.
 
 ---
 
 ## 5. Data Workflow
 
 ```
-[Data Source(s)]
-      ↓
-[Ingestion / Collection Method]
-      ↓
-[Cleaning & Transformation]
-      ↓
-[Analysis / Modelling / Querying]
-      ↓
-[Output / Visualisation / Reporting]
+World Bank WDI Bulk CSV (WDICSV.csv)
+        ↓
+Downloaded & loaded into Power Query
+        ↓
+Cleaning & Transformation
+        ↓
+Modeling & DAX Measures (Power BI)
+        ↓
+Dashboard / Visualization (Power BI)
+
 ```
 
-1. **Source:** [Where did the data come from? Format, size, access method.]
-2. **Ingestion:** [How was it brought in?]
-3. **Cleaning:** [What issues did you find and fix?]
-4. **Transformation:** [What new fields, aggregations, or structures did you create?]
-5. **Analysis:** [What methods - statistical, visual, query-based, model-based?]
-6. **Output:** [What form do the results take?]
+1. **Source:** World Bank World Development Indicators (WDI) bulk CSV download, covering 200+ countries and all WDI indicators, 1960–present.
+2.**Ingestion:** Downloaded as WDI_CSV.zip, extracted, and loaded WDICSV.csv into Power BI via Power Query.
+3.**Cleaning:** Filtered to 6 health indicators, removed regional/income-group aggregates, fixed a mis-typed Year column (originally read as a date serial number), unpivoted year columns into a long format.
+4.**Transformation:** Converted from wide format (years as columns) to long format (Country, Indicator, Year, Value) to support time-series and filterable visuals.
+5.**Analysis:** Descriptive averages (KPI cards), geospatial comparison (map), trend analysis (line chart), and ranking (bar/pie charts), all made interactive via slicers.
+6.**Output:** Interactive Power BI dashboard, PDF report, and dashboard screenshots.
 
 ---
 
 ## 6. Data Model & Schema
 
-### Dataset / Table: `[name]`
+### Dataset / Table: `WDICSV (cleaned, long format)`
 
 | Field Name | Data Type | Description | Example Value |
 |------------|-----------|-------------|---------------|
-| `[field_1]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_2]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-| `[field_3]` | [string / int / date / float / boolean] | [What this field represents] | [Non-sensitive example] |
-
-> **Row count (approx.):** [X rows]
-> **Date range:** [Start] – [End]
-> **Key join / relationship:** [e.g., `orders.customer_id` → `customers.id`]
-
-*Add additional table blocks as needed for multi-table projects.*
+| `Country Name` | string | Full country name | "Nigeria" |
+| `Country Code` | string | ISO 3-letter country code |"NGA" |
+| `Indicator Name` | string| Full name of the health indicator |"Life expectancy at birth, total (years)" |
+| `Indicator Code` | string | WDI indicator code | "SP.DYN.LE00.IN" |
+| `Year` | whole number | Year of observation| 2023 |
+| `Value` | decimal | Indicator value for that country/year | 73.79 |
+> **Row count (approx.):**  ~90,000 rows (6 indicators × ~190 countries × ~64 years, with gaps for indicators lacking full historical coverage)
+> **Date range:** 1960–2023
+> **Key join / relationship:**Single flat table; no joins required — Country Name/Code, Indicator Name/Code, Year, and Value all live in one row per observation.
 
 ---
 ## 8. Analysis & Metrics
 ### Analytical Approach
-
-[Describe how you approached the analysis. Were you exploring patterns? Testing a hypothesis? Building and validating a pipeline? Be honest about your method - exploratory work is valid, just call it that.]
+This was primarily an exploratory and descriptive analysis: filtering a large global indicator dataset down to a health-focused subset, then summarizing, comparing, and visualizing patterns across countries and time — rather than testing a specific statistical hypothesis.
 
 ### Key Metrics Defined
 
 | Metric | Plain-Language Definition | Why It Matters |
 |--------|--------------------------|----------------|
-| `[Metric 1]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 2]` | [What it measures, in one sentence] | [What decision or question it answers] |
-| `[Metric 3]` | [What it measures, in one sentence] | [What decision or question it answers] |
-
+| `Avg. Life Expectancy` | Average years a newborn is expected to live, across countries | Core measure of overall population health |
+| `Avg. Under-5 Mortality Rate` | Average deaths per 1,000 live births before age 5 | Reflects child healthcare access and quality |
+| `Avg. Maternal Mortality Rate` | Average maternal deaths per 100,000 live births | Reflects maternal healthcare quality |
+| `Avg. Health Expenditure` | Average health spending per capital | Reflects national investment in healthcare |
 ### Methods Used
-
-- [e.g., Descriptive statistics - distribution, central tendency, outlier detection]
-- [e.g., Trend analysis across [time period]]
-- [e.g., Segmentation / group comparison by [dimension]]
-- [e.g., Correlation analysis between [variable A] and [variable B]]
-- [e.g., SQL window functions for [specific aggregation]]
-- [e.g., Custom aggregation or transformation logic in [tool]]
+- Descriptive statistics — average values per indicator, by country and globally
+- Trend analysis across time (1960–2023)
+- Geographic/country comparison via choropleth map
+- Ranking / Top-N comparison (bar chart and pie/donut chart)
+- Interactive filtering by Year and Indicator via slicers
 
 ---
 
 ## 9. Key Insights
 
-**Insight 1:** Development and longevity are closely linked — smaller, high-income nations (Switzerland, Monaco, Luxembourg, Norway) consistently top the life expectancy rankings.
-**Insight 2:** Steady historical progress — global average life expectancy has risen consistently since 1960, reflecting long-term gains in healthcare and sanitation.
-**Insight 3:** Pandemic impact is visible in the data — a clear dip appears around 2020–2021, aligning with COVID-19's global disruption.
-10. Recommendations
+**Insight 1:** Development and longevity are closely linked. Smaller, high-income nations — Switzerland, Monaco, Luxembourg, Norway, Denmark — consistently top the 2023 life expectancy rankings, pointing to a strong association between economic development, healthcare investment, and health outcomes.
 
-**Insight 1: [Short descriptive headline]**
-[What you found + what it suggests. One short paragraph.]
+**Insight 2:** Steady historical progress, with a visible shock. Global average life expectancy has risen consistently since 1960, reflecting decades of improvement in healthcare, sanitation, and disease control — but a clear dip appears around 2020–2021, consistent with the global disruption of the COVID-19 pandemic.
 
-**Insight 2: [Short descriptive headline]**
-[What you found + what it suggests.]
-
-**Insight 3: [Short descriptive headline]**
-[What you found + what it suggests.]
-
-**Insight 4 (if applicable): [Short descriptive headline]**
-[What you found + what it suggests.]
+**Insight 3:** Resource gaps persist. Health expenditure, hospital bed availability, and immunization coverage vary widely across countries, with lower-income regions generally reporting lower averages across all three resource indicators.
 
 ---
+
 
 ## 10. Recommendations
 
 | Priority | Recommendation | Based On | Suggested Owner |
 |----------|---------------|----------|-----------------|
-| High | Increase healthcare infrastructure investment in lower-ranked regions | Strong link between development and life expectancy| Health ministries/policymakers |
-| Medium | Sustain immunization program funding |Low-cost, high-impact intervention |Public health agencies |
-| Low | Expand analysis with GDP/education data | To validate development–health relationship further | Future analysts |
+| High | Increase investment in healthcare infrastructure (hospital beds, expenditure per capita) in lower-ranked regions | Insight 1 & 3 | Health ministries / policymakers |
+| Medium | Sustain and expand immunization program funding | Insight 3 |Public health agencies | Public health agencies
+| Low | Extend analysis with socioeconomic indicators (GDP per capita, education) to further validate the development–health relationship | Insight 1| Future analysts |
 
 ---
 
 ## 11. Assumptions & Limitations
 ### Assumptions
 
-- Assumptions: Regional/income-group aggregates were excluded to focus on individual country comparisons; missing early-year data for some indicators reflects genuine reporting gaps, not errors.
-Limitations: 2024–2025 data was largely incomplete due to WDI reporting lag; some indicators (e.g., physicians per capita) were unavailable in this dataset release.
-- [What did you treat as true without being able to verify?]
-- [What simplifications did you make for scope or feasibility?]
-- [What domain rules or definitions did you accept as given?]
-
+- Regional and income-group aggregates (e.g., "World," "Africa Eastern and Southern") were excluded to focus on individual country-level comparison.
+- Missing values in earlier decades for indicators like immunization and health expenditure reflect genuine historical non-reporting, not data errors.
+  
 ### Limitations
-- Limitations: 2024–2025 data was largely incomplete due to WDI reporting lag; some indicators (e.g., physicians per capita) were unavailable in this dataset release.
-- [What analysis was out of scope but could affect interpretation?]
-- [What would a more rigorous version of this project include?]
-- [Are there known biases in the data source or collection method?]
+- 2024–2025 data was largely incomplete at the time of analysis due to standard World Bank reporting lag.
+- Some indicators considered for this project (e.g., physicians per 1,000 people, basic drinking water/sanitation access) were not available in this particular WDI release and were excluded.
+- This is a descriptive/exploratory analysis; no causal or statistical significance testing was performed on the development–health relationship.
 
-> *The goal here is pre-emptive Q&A. What would a thoughtful skeptic push back on? Document the answer here, before they ask.*
+> *The goal here is pre-emptive Q&A. A more rigorous follow-up could include correlation analysis against GDP per capita or education indicators..*
 
 ---
 
 ## 12. Future Enhancements
-- [ ] [Enhancement 1 - specific and traceable to a real gap in this project]
-- [ ] [Enhancement 2]
-- [ ] [Enhancement 3]
-- [ ] [Enhancement 4]
+
+- [ ] Add GDP per capita and education indicators to statistically test the development–health relationship
+- [ ] Build a Bottom 10 countries view alongside the existing Top 10
+- [ ] Automate refresh from the latest WDI release via Power Query web connector
+- [ ] Add regional (continent-level) roll-up comparisons
 
 ---
 
@@ -241,9 +210,10 @@ Limitations: 2024–2025 data was largely incomplete due to WDI reporting lag; s
  
 | Deliverable | Description | Location |
 |-------------|-------------|----------|
-| Final Report | PDF covering objective, methodology, findings, recommendations | [`/path/to/file`] |
-| Power BI Dashboard | Interactive .pbix file | [`/path/to/file`] |
-| Dashboard Screenshots | PNG exports of each dashboard view | [`/path/to/file`] |
+| Final Report | PDF covering objective, methodology, findings, recommendations | reports/WDI_Health_Capstone_Report.pdf |
+| Power BI Dashboard | Interactive .pbix file with KPI cards, map, trend line, bar and pie charts, slicers | `visuals/WDI_Health_Dashboard.pbix` |
+| Dashboard Screenshots | PNG exports of each dashboard view | [`visuals/screenshot` |
+
 
 ---
 
